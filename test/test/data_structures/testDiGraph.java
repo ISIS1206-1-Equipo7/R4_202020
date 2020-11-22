@@ -37,29 +37,29 @@ public class testDiGraph {
 		grafo.insertVertex("19", "diecinueve");
 		
 		// crea los arcos:
-		grafo.addEdge("0", "1", 0.5);
-		grafo.addEdge("0", "5", 2.5);
-		grafo.addEdge("2", "0", 1);
-		grafo.addEdge("2", "3", 0.5);
-		grafo.addEdge("3", "2", 0.5);
-		grafo.addEdge("3", "5", 1);
-		grafo.addEdge("4", "2", 1);
-		grafo.addEdge("4", "3", 0.5);
-		grafo.addEdge("5", "4", 0.5);
-		grafo.addEdge("6", "0", 3.0);
-		grafo.addEdge("6", "4", 1.0);
-		grafo.addEdge("6", "9", 1.5);
-		grafo.addEdge("7", "6", 0.5);
-		grafo.addEdge("7", "8", 0.5);
-		grafo.addEdge("8", "7", 0.5);
-		grafo.addEdge("8", "9", 0.5);
-		grafo.addEdge("9", "10", 0.5);
-		grafo.addEdge("9", "11", 1);
-		grafo.addEdge("10", "12", 1.0);
-		grafo.addEdge("11", "4", 3.5);
-		grafo.addEdge("11", "12", 0.5);
-		grafo.addEdge("12", "9", 1.5);
-		grafo.addEdge("15", "19", 2.0); //23
+		grafo.addEdge("0", "1", 0.5, false);
+		grafo.addEdge("0", "5", 2.5, false);
+		grafo.addEdge("2", "0", 1,false);
+		grafo.addEdge("2", "3", 0.5,false);
+		grafo.addEdge("3", "2", 0.5,false);
+		grafo.addEdge("3", "5", 1,false);
+		grafo.addEdge("4", "2", 1,false);
+		grafo.addEdge("4", "3", 0.5,false);
+		grafo.addEdge("5", "4", 0.5,false);
+		grafo.addEdge("6", "0", 3.0,false);
+		grafo.addEdge("6", "4", 1.0,false);
+		grafo.addEdge("6", "9", 1.5,false);
+		grafo.addEdge("7", "6", 0.5,false);
+		grafo.addEdge("7", "8", 0.5,false);
+		grafo.addEdge("8", "7", 0.5,false);
+		grafo.addEdge("8", "9", 0.5,false);
+		grafo.addEdge("9", "10", 0.5,false);
+		grafo.addEdge("9", "11", 1,false);
+		grafo.addEdge("10", "12", 1.0,false);
+		grafo.addEdge("11", "4", 3.5,false);
+		grafo.addEdge("11", "12", 0.5,false);
+		grafo.addEdge("12", "9", 1.5,false);
+		grafo.addEdge("15", "19", 2.0,false); //23
 		
 		
 
@@ -78,7 +78,7 @@ public class testDiGraph {
 		assertTrue(grafo.numEdges()==23);
 		
 		try {
-			grafo.addEdge("15", "19", 3.0); //24
+			grafo.addEdge("15", "19", 3.0, false); //24
 		}
 		catch(Exception e) {
 			
@@ -171,6 +171,51 @@ public class testDiGraph {
 		assertTrue(grafo.indegree("15") == 0);
 
 		
+	}
+	
+	@Test
+	public void testReverse() {
+		
+		DiGraph<String, String> reverse = grafo.reverse();
+		
+		// reverse Edges corrrectly added.
+		assertTrue(reverse.getVertex("0").getReverseEdge("2").weight()==1.0);
+		assertTrue(reverse.getVertex("0").getReverseEdge("6").weight()==3.0);
+		assertTrue(reverse.getVertex("1").getReverseEdge("0").weight()==0.5);
+		assertTrue(reverse.getVertex("2").getReverseEdge("4").weight()==1.0);
+		assertTrue(reverse.getVertex("3").getReverseEdge("2").weight()==0.5);
+		assertTrue(reverse.getVertex("3").getReverseEdge("4").weight()==0.5);
+		assertTrue(reverse.getVertex("4").getReverseEdge("6").weight()==1);
+		assertTrue(reverse.getVertex("4").getReverseEdge("5").weight()==0.5);
+		assertTrue(reverse.getVertex("5").getReverseEdge("0").weight()==2.5);
+		assertTrue(reverse.getVertex("5").getReverseEdge("3").weight()==1);
+		assertTrue(reverse.getVertex("6").getReverseEdge("7").weight()==0.5);
+		assertTrue(reverse.getVertex("7").getReverseEdge("8").weight()==0.5);
+		assertTrue(reverse.getVertex("8").getReverseEdge("7").weight()==0.5);
+		assertTrue(reverse.getVertex("9").getReverseEdge("6").weight()==1.5);
+		assertTrue(reverse.getVertex("9").getReverseEdge("8").weight()==0.5);
+		assertTrue(reverse.getVertex("9").getReverseEdge("12").weight()==1.5);
+		assertTrue(reverse.getVertex("10").getReverseEdge("9").weight()==0.5);
+		assertTrue(reverse.getVertex("11").getReverseEdge("9").weight()==1);
+		assertTrue(reverse.getVertex("12").getReverseEdge("11").weight()==0.5);
+		assertTrue(reverse.getVertex("12").getReverseEdge("10").weight()==1.0);
+		
+		//sizes:
+		assertTrue(reverse.getVertex("0").reverseEdges().size()==2);
+		assertTrue(reverse.getVertex("1").reverseEdges().size()==1);
+		assertTrue(reverse.getVertex("2").reverseEdges().size()==2);
+		assertTrue(reverse.getVertex("3").reverseEdges().size()==2);
+		assertTrue(reverse.getVertex("4").reverseEdges().size()==3);
+		assertTrue(reverse.getVertex("5").reverseEdges().size()==2);
+		assertTrue(reverse.getVertex("6").reverseEdges().size()==1);
+		assertTrue(reverse.getVertex("7").reverseEdges().size()==1);
+		assertTrue(reverse.getVertex("8").reverseEdges().size()==1);
+		assertTrue(reverse.getVertex("9").reverseEdges().size()==3);
+		assertTrue(reverse.getVertex("10").reverseEdges().size()==1);
+		assertTrue(reverse.getVertex("11").reverseEdges().size()==1);
+		assertTrue(reverse.getVertex("12").reverseEdges().size()==2);
+
+
 	}
 
 }

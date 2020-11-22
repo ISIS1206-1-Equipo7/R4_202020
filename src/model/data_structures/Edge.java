@@ -9,7 +9,7 @@ public class Edge <K extends Comparable<K>, V>
 	private Vertex<K,V> dest;
 	private double weight;
 	
-	// ESTOS SON  ATRIBUTOS QUE NECESITEMOS PARA ACTUALIZAR EL PESO:
+	// ESTOS SON  ATRIBUTOS QUE NECESITEMOS PARA CALCULAR EL PESO:
 	private double cumWeight;
 	private int repetitions;
 	
@@ -52,7 +52,7 @@ public class Edge <K extends Comparable<K>, V>
 	}
 	
 	/**
-	 * Devuelve el peso del arco
+	 * Devuelve el peso promediado del arco 
 	 * @return peso (tiempo) del arco.
 	 */
 	public double weight() {

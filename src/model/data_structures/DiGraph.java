@@ -86,7 +86,7 @@ public class DiGraph <K extends Comparable<K>, V> implements IDiGraph< K, V>
 	}
 
 	@Override
-	public void addEdge(K source, K dest, double weight) {
+	public void addEdge(K source, K dest, double weight, boolean reverse) {
 		
 		int inicio = Integer.parseInt((String) source);
 		int destino = Integer.parseInt((String) dest);
@@ -102,9 +102,14 @@ public class DiGraph <K extends Comparable<K>, V> implements IDiGraph< K, V>
 		
 		Edge<K,V> nuevoArco = new Edge<K,V>(nodoSource, nodoDestino, weight); // crea el objeto arco
 		
-		nodoSource.addEdge(nuevoArco);// pasa el objeto arco al nodo origen para que se guarde la asociacion entre ambos vertices.
-		nodoDestino.addInDegree();	 // suma al numero de arcos entrantes al nodoDestino.
-		
+		if(reverse==false) {
+			nodoSource.addEdge(nuevoArco);// pasa el objeto arco al nodo origen para que se guarde la asociacion entre ambos vertices.
+			nodoDestino.addInDegree();	 // suma al numero de arcos entrantes al nodoDestino.
+		}
+		if(reverse) {
+			nodoSource.reverseAddEdge(nuevoArco);// pasa el objeto arco al nodo origen para que se guarde la asociacion entre ambos vertices EN EL REVERSO.
+			nodoDestino.addReverseInDegree();	 // suma al numero de arcos entrantes REVERSOS al nodoDestino.
+		}
 		listaArcos.add(nuevoArco);	// agrega el nuevo arco a una lista con todos los arcos del grafo.
 		
 	}
@@ -192,4 +197,46 @@ public class DiGraph <K extends Comparable<K>, V> implements IDiGraph< K, V>
 		return listaVertices;
 		
 	}
+	
+	/**
+	 * genera el reverso de este DiGraph
+	 * @return el reverso de este DiGraph
+	 */
+	public DiGraph<K, V> reverse()
+	{
+		DiGraph<K,V> reverse = new DiGraph<K,V>(initialSize);
+		Vertex<K,V> newDest;
+		Vertex<K,V> newSource;
+		Vertex<K,V> vertex;
+		
+		// llena el arreglo reverso primero.
+		for(int i=0; i < initialSize; i++) {
+			
+			if((vertex = grafo.get(i))!= null)
+				reverse.insertVertex(vertex.getId(), vertex.getInfo());
+		}
+		
+		LinkedList<Edge<K,V>> edges;
+		double weight;
+		for(int i=0; i < initialSize; i++) {
+			
+			if((newDest = grafo.get(i))!= null) {
+				
+				edges = newDest.edges();
+				
+				if(edges.size() >0) {
+					for( Edge<K,V> edge : edges) {
+						
+						newSource = edge.getDest();
+						weight = edge.weight();
+						reverse.addEdge(newSource.getId(), newDest.getId(), weight, true);
+					}
+				}
+			}
+		}
+		
+		return reverse;
+	}
+	
+	
 }

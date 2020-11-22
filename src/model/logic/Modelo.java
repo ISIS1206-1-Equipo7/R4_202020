@@ -201,7 +201,7 @@ public class Modelo {
 				double duration = Double.parseDouble(tripDuration);
 				
 				try {
-					grafo.addEdge(startID, endID, duration);
+					grafo.addEdge(startID, endID, duration, false);
 				}
 				catch(IllegalArgumentException e) {		
 					if(e.getMessage().equals("el arco que se intenta agregar ya existe")) {  // el arco ya se habia creado
@@ -271,7 +271,7 @@ public class Modelo {
 	}
 	
 	/**
-	 * Resuelve el req. 1
+	 * Resuelve el req. 1 del taller 6
 	 * @return Edge con el minimo tripduration.
 	 */
 	public void consultarGrado(String id) {
@@ -289,10 +289,23 @@ public class Modelo {
 		}
 	}
 	
-	
+	/**
+	 * limpia un consulta previa para permitir que el usuario realice una nueve consulta con un conjunto diferente de datos.
+	 */
 	public void limpiarConsulta() {
 		
 		grafo = new DiGraph<String, Station>(3665);
+	}
+	
+	/**
+	 * resuelve el requerimiento 1 del reto: Cantidad de clusters de viajes.
+	 * @param id1  estacion 1 de interes.
+	 * @param id2 estacion 2 de interes.
+	 */
+	public void cantidadClustersViajes(String id1, String id2) {
+		
+		
+		
 	}
 	
 }

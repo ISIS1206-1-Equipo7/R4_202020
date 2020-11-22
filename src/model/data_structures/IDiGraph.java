@@ -39,7 +39,7 @@ public interface IDiGraph <K extends Comparable<K>, V>
 	 * @param dest
 	 * @param weight
 	 */
-	void addEdge(K source, K dest, double weight);
+	void addEdge(K source, K dest, double weight, boolean reverse);
 	
 	/**
 	 * Retorna el vertice a partir de su identificador unico (Id de la estacion).

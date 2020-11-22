@@ -71,18 +71,111 @@ public class Controller {
 				
 				break;
 
-			// resuelve el requerimiento 1
+			// resuelve el requerimiento 1 del reto: Cantidad de clusters de viajes.
 			case 1:
+				
 				if (!cargados) {
 					view.printMessage("Debe cargar los datos primero.");
 					break;
 				}
 				
-				view.printMessage("Digite el ID de la estacion que desea consultar.");
-				String id = lector.next();
+				view.printMessage("Digite el id de la primera estacion" );
+				String id1 = lector.next();
+				view.printMessage("Digite el id de la segunda estacion");
+				String id2 = lector.next();
 				
-				modelo.consultarGrado(id);
 				view.printMessage("Consulta terminada.");
+				break;
+				
+			// resuelve el requerimiento 2 del reto: Ruta turistica circular.
+			case 2:
+				if (!cargados) {
+					view.printMessage("Debe cargar los datos primero.");
+					break;
+				}
+				// cuerpo
+
+				
+				view.printMessage("Consulta terminada.");
+				break;
+				
+			// resuelve el requerimiento 3 del reto: Estaciones criticas.
+			case 3:
+				if (!cargados) {
+					view.printMessage("Debe cargar los datos primero.");
+					break;
+				}
+				// cuerpo
+
+				
+				view.printMessage("Consulta terminada.");
+				
+				break;
+				
+			
+			// resuelve el requerimiento 4 del reto: Ruta turistica por resistencia.
+			case 4:
+				if (!cargados) {
+					view.printMessage("Debe cargar los datos primero.");
+					break;
+				}
+				// cuerpo
+
+				
+				view.printMessage("Consulta terminada.");
+				
+				break;
+				
+			// resuelve el requerimiento 5 del reto: Recomendador de rutas.
+			case 5:
+				if (!cargados) {
+					view.printMessage("Debe cargar los datos primero.");
+					break;
+				}
+				// cuerpo
+
+				
+				view.printMessage("Consulta terminada.");
+				
+				break;
+				
+			// resuelve el requerimiento 6 del reto: Ruta de interés turistico.
+			case 6:
+				if (!cargados) {
+					view.printMessage("Debe cargar los datos primero.");
+					break;
+				}
+				// cuerpo
+
+				
+				view.printMessage("Consulta terminada.");
+				
+				break;
+				
+			// resuelve el requerimiento 7 del reto (Bono): Identificacion de estaciones para publicidad.
+			case 7: 
+				if (!cargados) {
+					view.printMessage("Debe cargar los datos primero.");
+					break;
+				}
+				// cuerpo
+
+				
+				view.printMessage("Consulta terminada.");
+				
+				break;
+				
+			// resuelve el requerimiento 8 del reto (Bono): Identificacion de bicicletas para mantenimiento.
+			case 8:
+				if (!cargados) {
+					view.printMessage("Debe cargar los datos primero.");
+					break;
+				}
+				// cuerpo
+
+				
+				view.printMessage("Consulta terminada.");
+				
 				break;
 				
 			default: 
