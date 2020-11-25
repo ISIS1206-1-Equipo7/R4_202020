@@ -201,7 +201,7 @@ public class Modelo {
 				double duration = Double.parseDouble(tripDuration);
 				
 				try {
-					grafo.addEdge(startID, endID, duration, false);
+					grafo.addEdge(startID, endID, duration);
 				}
 				catch(IllegalArgumentException e) {		
 					if(e.getMessage().equals("el arco que se intenta agregar ya existe")) {  // el arco ya se habia creado

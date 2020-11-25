@@ -184,93 +184,93 @@ public class Vertex <K extends Comparable<K>, V>
 	//---------------
 	// metodos para calcualar el reverso del grafo
 	//---------------
-	
-	/**
-	 *  agrega un grado al reverso de este vertice para el reverso del grafo
-	 */
-	public void addReverseInDegree() {
-		
-		reverseInDegree ++;
-	}
-	
-	/**
-	 * Agrega un arco adyacente al vertice reverso.
-	 * @param edge
-	 */
-	public void reverseAddEdge(Edge<K,V> edge){
-		
-		// verifica que el arco que se intenta agregar no exista.
-		for( Edge<K,V> arco : reverseEdges) {
-			
-			if(arco.compareTo(edge)== 0) {
-				throw new IllegalArgumentException("el arco que se intenta agregar ya existe");
-			}
-		}
-		
-		if(edge.getSource().getId().compareTo(this.id)!=0)
-			throw new IllegalArgumentException("el arco que se intenta agregar no incluye este vertice");
+//
+//	/**
+//	 *  agrega un grado al reverso de este vertice para el reverso del grafo
+//	 */
+//	public void addReverseInDegree() {
+//
+//		reverseInDegree ++;
+//	}
+//
+//	/**
+//	 * Agrega un arco adyacente al vertice reverso.
+//	 * @param edge
+//	 */
+//	public void reverseAddEdge(Edge<K,V> edge){
+//
+//		// verifica que el arco que se intenta agregar no exista.
+//		for( Edge<K,V> arco : reverseEdges) {
+//
+//			if(arco.compareTo(edge)== 0) {
+//				throw new IllegalArgumentException("el arco que se intenta agregar ya existe");
+//			}
+//		}
+//
+//		if(edge.getSource().getId().compareTo(this.id)!=0)
+//			throw new IllegalArgumentException("el arco que se intenta agregar no incluye este vertice");
+//
+//
+//		reverseEdges.add(edge); // agrega el arco a la lista de arcos salientes de este vertice
+//		Vertex<K,V> adjacente = edge.getDest();
+//		reverseVertices.add(adjacente); // agrega el vertice destino a la lista de vertices adyacentes a este.
+//
+//	}
+//	/**
+//	 * retorna el grado de salida del reverso de este vertice
+//	 * @return Int numero de arcos saliente del reverso de este vertice.
+//	 */
+//	public int reverseOutDegree () {
+//		return reverseEdges.size();
+//	}
+//
+//	/**
+//	 * retorna el grado de entrada del reverso de este vertice.
+//	 * @return Int numero de arcos entrantes al reverso de este vertice.
+//	 */
+//	public int reverseInDegree() {
+//		return reverseInDegree;
+//	}
+//
+//
+//	/**
+//	 * Retorna el arco entre este vertice y el vertice pasado por parametro (si existe). Retorna null si no existe.
+//	 * @param  Id del vertice destino con el cual se busca en arco con este vertice.
+//	 * @return El arco entre este vertice y el que se pasa por parametro.
+//	 */
+//	public Edge<K,V> getReverseEdge(K idVertex){
+//
+//
+//		if(!reverseEdges.isEmpty()) {
+//
+//			for(Edge<K,V> edge : reverseEdges) {
+//
+//				if(edge.getDest().getId().equals(idVertex))
+//					return edge;
+//
+//			}
+//
+//		}
+//		return null;
+//	}
+//
+//	/**
+//	 * Retorna una lista con sus vertices REVERSOS adyacentes 
+//	 * @return LinkedList con los vertices adyacentes REVERSOS.
+//	 */
+//	public LinkedList<Vertex<K,V>> reverseVertices(){
+//		return reverseVertices;
+//
+//	}
+//
+//	/**
+//	 * Retorna una lista con sus arcos adyacentes REVERSOS (salientes)
+//	 * @return LinkedList con los arcos adyacentes REVERSOS (salientes) de este vertice (Nodo)
+//	 */
+//	public LinkedList<Edge<K,V>> reverseEdges(){
+//		return reverseEdges;
+//
+//	}
 
-		
-		reverseEdges.add(edge); // agrega el arco a la lista de arcos salientes de este vertice
-		Vertex<K,V> adjacente = edge.getDest();
-		reverseVertices.add(adjacente); // agrega el vertice destino a la lista de vertices adyacentes a este.
-		
-	}
-	/**
-	 * retorna el grado de salida del reverso de este vertice
-	 * @return Int numero de arcos saliente del reverso de este vertice.
-	 */
-	public int reverseOutDegree () {
-		return reverseEdges.size();
-	}
-	
-	/**
-	 * retorna el grado de entrada del reverso de este vertice.
-	 * @return Int numero de arcos entrantes al reverso de este vertice.
-	 */
-	public int reverseInDegree() {
-		return reverseInDegree;
-	}
-	
-	
-	/**
-	 * Retorna el arco entre este vertice y el vertice pasado por parametro (si existe). Retorna null si no existe.
-	 * @param  Id del vertice destino con el cual se busca en arco con este vertice.
-	 * @return El arco entre este vertice y el que se pasa por parametro.
-	 */
-	public Edge<K,V> getReverseEdge(K idVertex){
-		
-		
-		if(!reverseEdges.isEmpty()) {
-			
-			for(Edge<K,V> edge : reverseEdges) {
-				
-				if(edge.getDest().getId().equals(idVertex))
-					return edge;
-					
-			}
-			
-		}
-		return null;
-	}
-	
-	/**
-	 * Retorna una lista con sus vertices REVERSOS adyacentes 
-	 * @return LinkedList con los vertices adyacentes REVERSOS.
-	 */
-	public LinkedList<Vertex<K,V>> reverseVertices(){
-		return reverseVertices;
-		
-	}
-	
-	/**
-	 * Retorna una lista con sus arcos adyacentes REVERSOS (salientes)
-	 * @return LinkedList con los arcos adyacentes REVERSOS (salientes) de este vertice (Nodo)
-	 */
-	public LinkedList<Edge<K,V>> reverseEdges(){
-		return reverseEdges;
-		
-	}
-	
 
 }

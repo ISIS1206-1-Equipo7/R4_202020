@@ -42,28 +42,28 @@ public class testDepthFirstOrder {
 
 
 		// crea los arcos:
-		grafo.addEdge("0", "1", 0.5, false);
-		grafo.addEdge("0", "5", 2.5, false);
-		grafo.addEdge("2", "0", 1,false);
-		grafo.addEdge("2", "3", 0.5,false);
-		grafo.addEdge("3", "2", 0.5,false);
-		grafo.addEdge("3", "5", 1,false);
-		grafo.addEdge("4", "2", 1,false);
-		grafo.addEdge("4", "3", 0.5,false);
-		grafo.addEdge("5", "4", 0.5,false);
-		grafo.addEdge("6", "0", 3.0,false);
-		grafo.addEdge("6", "4", 1.0,false);
-		grafo.addEdge("6", "9", 1.5,false);
-		grafo.addEdge("7", "6", 0.5,false);
-		grafo.addEdge("7", "8", 0.5,false);
-		grafo.addEdge("8", "7", 0.5,false);
-		grafo.addEdge("8", "9", 0.5,false);
-		grafo.addEdge("9", "10", 0.5,false);
-		grafo.addEdge("9", "11", 1,false);
-		grafo.addEdge("10", "12", 1.0,false);
-		grafo.addEdge("11", "4", 3.5,false);
-		grafo.addEdge("11", "12", 0.5,false);
-		grafo.addEdge("12", "9", 1.5,false);
+		grafo.addEdge("0", "1", 0.5);
+		grafo.addEdge("0", "5", 2.5);
+		grafo.addEdge("2", "0", 1);
+		grafo.addEdge("2", "3", 0.5);
+		grafo.addEdge("3", "2", 0.5);
+		grafo.addEdge("3", "5", 1);
+		grafo.addEdge("4", "2", 1);
+		grafo.addEdge("4", "3", 0.5);
+		grafo.addEdge("5", "4", 0.5);
+		grafo.addEdge("6", "0", 3.0);
+		grafo.addEdge("6", "4", 1.0);
+		grafo.addEdge("6", "9", 1.5);
+		grafo.addEdge("7", "6", 0.5);
+		grafo.addEdge("7", "8", 0.5);
+		grafo.addEdge("8", "7", 0.5);
+		grafo.addEdge("8", "9", 0.5);
+		grafo.addEdge("9", "10", 0.5);
+		grafo.addEdge("9", "11", 1);
+		grafo.addEdge("10", "12", 1.0);
+		grafo.addEdge("11", "4", 3.5);
+		grafo.addEdge("11", "12", 0.5);
+		grafo.addEdge("12", "9", 1.5);
 
 
 	}
