@@ -20,7 +20,7 @@ public class DiGraph <K extends Comparable<K>, V> implements IDiGraph< K, V>
     /**
      * capacidad maxima del grafo.
      */
-    private int initialSize;
+    public int initialSize;
     
     /**
      * lista de vertices (auxiliar para el metodo vertices).
@@ -90,6 +90,11 @@ public class DiGraph <K extends Comparable<K>, V> implements IDiGraph< K, V>
 		
 		int inicio = Integer.parseInt((String) source);
 		int destino = Integer.parseInt((String) dest);
+		
+		// Verifica si el arco que se intenta agregar es una anomalia (un arco de un vertice a si mismo)
+		// si lo es, entonces no lo agrega.
+		if(inicio == destino)
+			return;
 
 		if(inicio <0 || destino <0 || inicio >= initialSize || destino >= initialSize ) // valida entradas de parametros
 			throw new  IndexOutOfBoundsException("Id de inicio o de fin tienen que estar dentro de los limites.");
@@ -99,6 +104,7 @@ public class DiGraph <K extends Comparable<K>, V> implements IDiGraph< K, V>
 		
 		if(nodoSource == null || nodoDestino == null)
 			throw new  IllegalArgumentException(" alguno de los vertices del arco que se intenta crear es null");
+		
 		
 		Edge<K,V> nuevoArco = new Edge<K,V>(nodoSource, nodoDestino, weight); // crea el objeto arco
 		
@@ -200,7 +206,7 @@ public class DiGraph <K extends Comparable<K>, V> implements IDiGraph< K, V>
 	
 	/**
 	 * genera el reverso de este DiGraph
-	 * @return el reverso de este DiGraph
+	 * @return el grafo reverso de este DiGraph
 	 */
 	public DiGraph<K, V> reverse()
 	{
@@ -209,27 +215,27 @@ public class DiGraph <K extends Comparable<K>, V> implements IDiGraph< K, V>
 		Vertex<K,V> newSource;
 		Vertex<K,V> vertex;
 		
-		// llena el arreglo reverso primero.
+		// llena el arreglo reverso primero con los vertices del grafo original.
 		for(int i=0; i < initialSize; i++) {
 			
 			if((vertex = grafo.get(i))!= null)
 				reverse.insertVertex(vertex.getId(), vertex.getInfo());
 		}
 		
-		LinkedList<Edge<K,V>> edges;
+		LinkedList<Edge<K,V>> edges;	//
 		double weight;
-		for(int i=0; i < initialSize; i++) {
+		for(int i=0; i < initialSize; i++) {	// recorre los vertices del grafo original
 			
 			if((newDest = grafo.get(i))!= null) {
 				
-				edges = newDest.edges();
+				edges = newDest.edges();	// accede a los arcos de cada vertice.
 				
 				if(edges.size() >0) {
-					for( Edge<K,V> edge : edges) {
+					for( Edge<K,V> edge : edges) {	// recorre los arcos del vertice.
 						
 						newSource = edge.getDest();
 						weight = edge.weight();
-						reverse.addEdge(newSource.getId(), newDest.getId(), weight, true);
+						reverse.addEdge(newSource.getId(), newDest.getId(), weight, true); // agrega el arco reverso al grafo reverso.
 					}
 				}
 			}

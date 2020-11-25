@@ -1,6 +1,10 @@
 package model.data_structures;
 
-public class KosarajuSharirSCC {
+import java.util.Queue;
+
+public class KosarajuSharirSCC <K extends Comparable<K>, V> {
 
 	
+
+
 }

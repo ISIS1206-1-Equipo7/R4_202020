@@ -60,6 +60,7 @@ public class testDiGraph {
 		grafo.addEdge("11", "12", 0.5,false);
 		grafo.addEdge("12", "9", 1.5,false);
 		grafo.addEdge("15", "19", 2.0,false); //23
+		grafo.addEdge("3", "3", 0, false);		// anomalia
 		
 		
 
@@ -97,6 +98,7 @@ public class testDiGraph {
 	
 	@Test
 	public void testInsertVertex() {
+		
 		
 		try {
 			grafo.insertVertex("12", "PruebaError");
@@ -178,7 +180,7 @@ public class testDiGraph {
 		
 		DiGraph<String, String> reverse = grafo.reverse();
 		
-		// reverse Edges corrrectly added.
+		// check that reverse Edges were corrrectly added.
 		assertTrue(reverse.getVertex("0").getReverseEdge("2").weight()==1.0);
 		assertTrue(reverse.getVertex("0").getReverseEdge("6").weight()==3.0);
 		assertTrue(reverse.getVertex("1").getReverseEdge("0").weight()==0.5);
@@ -199,6 +201,7 @@ public class testDiGraph {
 		assertTrue(reverse.getVertex("11").getReverseEdge("9").weight()==1);
 		assertTrue(reverse.getVertex("12").getReverseEdge("11").weight()==0.5);
 		assertTrue(reverse.getVertex("12").getReverseEdge("10").weight()==1.0);
+		assertTrue(reverse.getVertex("3").getReverseEdge("3")==null);
 		
 		//sizes:
 		assertTrue(reverse.getVertex("0").reverseEdges().size()==2);
@@ -214,8 +217,11 @@ public class testDiGraph {
 		assertTrue(reverse.getVertex("10").reverseEdges().size()==1);
 		assertTrue(reverse.getVertex("11").reverseEdges().size()==1);
 		assertTrue(reverse.getVertex("12").reverseEdges().size()==2);
+		assertTrue(reverse.edges().size() == 23);
+		assertTrue(reverse.vertices().size() ==15);
 
 
 	}
+
 
 }

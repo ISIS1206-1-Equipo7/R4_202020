@@ -145,7 +145,7 @@ public class Vertex <K extends Comparable<K>, V>
 	
 	/**
 	 * Retorna el arco entre este vertice y el vertice pasado por parametro (si existe). Retorna null si no existe.
-	 * @param vertex
+	 * @param  Id del vertex destino con el cual se busca el arco con este vertice.
 	 * @return El arco entre este vertice y el que se pasa por parametro.
 	 */
 	public Edge<K,V> getEdge(K idVertex){
@@ -216,14 +216,17 @@ public class Vertex <K extends Comparable<K>, V>
 		reverseVertices.add(adjacente); // agrega el vertice destino a la lista de vertices adyacentes a este.
 		
 	}
-	
+	/**
+	 * retorna el grado de salida del reverso de este vertice
+	 * @return Int numero de arcos saliente del reverso de este vertice.
+	 */
 	public int reverseOutDegree () {
 		return reverseEdges.size();
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * retorna el grado de entrada del reverso de este vertice.
+	 * @return Int numero de arcos entrantes al reverso de este vertice.
 	 */
 	public int reverseInDegree() {
 		return reverseInDegree;
@@ -232,7 +235,7 @@ public class Vertex <K extends Comparable<K>, V>
 	
 	/**
 	 * Retorna el arco entre este vertice y el vertice pasado por parametro (si existe). Retorna null si no existe.
-	 * @param vertex
+	 * @param  Id del vertice destino con el cual se busca en arco con este vertice.
 	 * @return El arco entre este vertice y el que se pasa por parametro.
 	 */
 	public Edge<K,V> getReverseEdge(K idVertex){
