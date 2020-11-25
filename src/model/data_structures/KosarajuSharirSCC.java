@@ -31,7 +31,7 @@ public class KosarajuSharirSCC <K extends Comparable<K>, V> {
         	vtx.unmark();
         }
         
-        // run DFS on G, using reverse postorder to guide calculation
+        // run DFS on G, using reverse postorder to guide calculationSS
         id = new int[G.initialSize];
         
         Vertex<K,V> vertex;
@@ -47,7 +47,33 @@ public class KosarajuSharirSCC <K extends Comparable<K>, V> {
         
 
         // check that id[] gives strong components
-        assert check(G);
+        //assert check(G);
+    }
+    
+    /**
+     * Hace un dfs
+     * @param G
+     * @param v
+     */
+    private void dfs(DiGraph<K,V> G, Vertex<K,V> v) {
+    	v.mark();
+    	id[(int)v.getId()] = count;
+    	for (Vertex adj : G.adjacentVertex(v.getId())) {
+    		if(adj.getMark()==false)
+    			dfs(G,adj);			
+		}
+    }
+    
+    public boolean stronglyConnected(Vertex v, Vertex w) {
+    	return id[Integer.parseInt((String) v.getId())] == id[Integer.parseInt((String) w.getId())];
+    }
+    
+    public int id(Vertex v) {
+    	return id[Integer.parseInt((String) v.getId())];
+    }
+    
+    public int count() {
+    	return count;
     }
     
     
