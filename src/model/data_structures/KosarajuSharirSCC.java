@@ -11,6 +11,8 @@ public class KosarajuSharirSCC <K extends Comparable<K>, V> {
 	
 	private int[] id;             // id[v] = id of strong component containing v
     private int count;            // number of strongly-connected components
+    private boolean[] marked;
+    
 
 
     //--------------
@@ -27,25 +29,32 @@ public class KosarajuSharirSCC <K extends Comparable<K>, V> {
         DepthFirstOrder<K,V> dfs = new DepthFirstOrder<K,V>(G.reverse());
 
         // desmarca todos los vertices para poder hacer el DFS de nuevo 
-        for(Vertex<K,V> vtx : G.vertices()) {
+        /*for(Vertex<K,V> vtx : dfs.reversePost()) {
         	vtx.unmark();
-        }
+        } */     
         
         // run DFS on G, using reverse postorder to guide calculationSS
         id = new int[G.initialSize];
-        
-        Vertex<K,V> vertex;
-        int reversePostSize = dfs.reversePost().size();
+        marked = new boolean[G.initialSize];
+        //Vertex<K,V> vertex;
+        for (Vertex v : dfs.reversePost()) {
+        	if(!marked[Integer.parseInt((String)v.getId())]) {
+        		dfs(G, v);
+        		count++;
+        	}
+		}
+       /* int reversePostSize = dfs.reversePost().size();
         for(int i=0; i< reversePostSize; i++) {
-        	
         	vertex =  dfs.reversePost().pop();
+        	if(!marked[Integer.parseInt((String)vertex.getId())]) {
+        		dfs(G, vertex);
+        		count++;
+        	}
         	if(vertex.getMark()==false) {
         		dfs(G,vertex);
         		count ++;
         	}
-        }
-        
-
+        }*/
         // check that id[] gives strong components
         //assert check(G);
     }
@@ -56,10 +65,10 @@ public class KosarajuSharirSCC <K extends Comparable<K>, V> {
      * @param v
      */
     private void dfs(DiGraph<K,V> G, Vertex<K,V> v) {
-    	v.mark();
-    	id[(int)v.getId()] = count;
-    	for (Vertex adj : G.adjacentVertex(v.getId())) {
-    		if(adj.getMark()==false)
+    	marked[Integer.parseInt((String)v.getId())] = true;
+    	id[Integer.parseInt((String)v.getId())] = count;
+    	for (Vertex<K, V> adj : G.adjacentVertex(v.getId())) {
+    		if(!marked[Integer.parseInt((String)adj.getId())])
     			dfs(G,adj);			
 		}
     }
