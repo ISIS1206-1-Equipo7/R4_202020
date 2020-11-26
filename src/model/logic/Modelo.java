@@ -308,4 +308,21 @@ public class Modelo {
 		
 	}
 	
+	/**
+	 * Resuelve el req. 4
+	 * @param tiempo el timpo maximo de resistencia
+	 * @param id el id de la estacion inicial
+	 */
+	public void rutaPorResistencia(String tiempo, String id) {
+		
+	}
+	
+	/**
+	 * Resuelve el req. 5
+	 * @param rangoEdad el rango de edad del turista
+	 */
+	public void recomendadorRutasPorEdad(String rangoEdad) {
+		
+	}
+	
 }
