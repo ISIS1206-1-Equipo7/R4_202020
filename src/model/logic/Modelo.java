@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import model.data_structures.DiGraph;
 import model.data_structures.Edge;
+import model.data_structures.KosarajuSharirSCC;
 
 
 /**
@@ -49,6 +50,7 @@ public class Modelo {
 	 * Estructura del grafo
 	 */
 	private DiGraph<String,Station> grafo;
+	private KosarajuSharirSCC<String, Station> Kosaraju;
 
 	
 	//------------
@@ -303,9 +305,11 @@ public class Modelo {
 	 * @param id2 estacion 2 de interes.
 	 */
 	public void cantidadClustersViajes(String id1, String id2) {
-		
-		
-		
+		Kosaraju =  new KosarajuSharirSCC<String, Station>(grafo);
+		System.out.println("El total de clusters presentes en el grafo son: " + Kosaraju.count());
+		if(Kosaraju.stronglyConnected(grafo.getVertex(id1), grafo.getVertex(id2)))
+			System.out.println("La estacion " + id1 + " y la estacion " + id2 + "pertenecen al mismo cluster.");
+		System.out.println("La estacion " + id1 + " y la estacion " + id2 + " no pertenecen al mismo cluster.");		
 	}
 	
 	/**
