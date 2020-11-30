@@ -333,9 +333,9 @@ public class Modelo {
 	/**
 	 * Resuelve el req. 3
 	 */
-	public void estacionesCriticas() {
-		ArrayList<Vertex<String, Station>> estaciones = grafo.verticesArr();
-		int N = estaciones.size();
+	public void estacionesCriticas() {		
+		Vertex<String, Station>[] estaciones = grafo.verticesArray();
+		int N = estaciones.length;
 		
 		sort.byInDegree(estaciones, 0, N-1);
 		System.out.println("Top 3 estaciones de llegada (indegree):");
@@ -350,27 +350,39 @@ public class Modelo {
 		this.printTop3SumDegree(estaciones);
 	}
 	
-	private void printTop3InDegree(ArrayList<Vertex<String, Station>> pArray) {
+	/**
+	 * inDegree Array
+	 * @param pArray
+	 */
+	private void printTop3InDegree(Vertex<String, Station>[] pArray) {
 		Vertex<String, Station> estacion;
 		for(int i = 0; i < 3; i++) {
-			estacion = pArray.get(i);
+			estacion = pArray[i];
 			System.out.println((i+1) + ") " + estacion.getInfo().getName() + " - " + estacion.indegree() + " llegadas");
 		}
 	}
 	
-	private void printTop3OutDegree(ArrayList<Vertex<String, Station>> pArray) {
+	/**
+	 * outDegree Array
+	 * @param pArray
+	 */
+	private void printTop3OutDegree(Vertex<String, Station>[] pArray) {
 		Vertex<String, Station> estacion;
 		for(int i = 0; i < 3; i++) {
-			estacion = pArray.get(i);
+			estacion = pArray[i];
 			System.out.println((i+1) + ") " + estacion.getInfo().getName() + " - " + estacion.outdegree() + " salidas");
 		}
 	}
 	
-	private void printTop3SumDegree(ArrayList<Vertex<String, Station>> pArray) {
+	/**
+	 * sumDegree Array
+	 * @param pArray
+	 */
+	private void printTop3SumDegree(Vertex<String, Station>[] pArray) {
 		Vertex<String, Station> estacion;
 		int suma;
 		for(int i = 0; i < 3; i++) {
-			estacion = pArray.get(i);
+			estacion = pArray[i];
 			suma = estacion.indegree() + estacion.outdegree();
 			System.out.println((i+1) + ") " + estacion.getInfo().getName() + " - " + suma + " llegadas y salidas");
 		}

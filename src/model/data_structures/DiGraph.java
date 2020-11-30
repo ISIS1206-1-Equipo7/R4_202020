@@ -204,12 +204,22 @@ public class DiGraph <K extends Comparable<K>, V> implements IDiGraph< K, V>
 		
 	}
 	
-	public ArrayList<Vertex<K, V>> verticesArr() {
-		ArrayList<Vertex<K, V>> vertices = new ArrayList<>();
+	/**
+	 * Retorna los vertices en un arreglo
+	 * @return vertices[]
+	 */
+	public Vertex<K, V>[] verticesArray(){
+		int c = 0;
+		int N = listaVertices.size();
+		Vertex<K, V>[] vertices = new Vertex[N];
+		
 		for (Vertex<K, V> vertice : listaVertices) {
-			if(vertice!=null)
-			vertices.add(vertice);
+			if(vertice!=null) {
+				vertices[c] = vertice;
+				c++;
+			}
 		}
+		
 		return vertices;
 	}
 	

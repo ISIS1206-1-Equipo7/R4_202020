@@ -1,8 +1,6 @@
 package model.data_structures;
 
-import java.util.ArrayList;
 import java.util.Random;
-
 import model.logic.Station;
 
 public class Quicksort {
@@ -13,22 +11,20 @@ public class Quicksort {
 	 * @param start el indice del comienzo
 	 * @param end el indice del final
 	 */
-	public void byInDegree(ArrayList<Vertex<String, Station>> pArray, int start, int end){
-		if (start >= end){
-			return;
-		}
+	public void byInDegree(Vertex<String, Station>[] pArray, int start, int end){
+		if (start >= end) return;
 
 		Random rand = new Random();
 
 		int pivotIdx = rand.nextInt(end - start) + start;
-		int pivotElem = pArray.get(pivotIdx).indegree();
+		int pivotElem = pArray[pivotIdx].indegree();
 
 		swap(pArray, pivotIdx, end);
 
 		int pointer = start;
 
 		for (int i = start; i < end; i++){
-			if (pArray.get(i).indegree() > pivotElem){
+			if (pArray[i].indegree() > pivotElem){
 				swap(pArray, i, pointer);
 				pointer ++;
 			}
@@ -46,22 +42,20 @@ public class Quicksort {
 	 * @param start el indice del comienzo
 	 * @param end el indice del final
 	 */
-	public void byOutDegree(ArrayList<Vertex<String, Station>> pArray, int start, int end){
-		if (start >= end){
-			return;
-		}
+	public void byOutDegree(Vertex<String, Station>[] pArray, int start, int end){
+		if (start >= end) return;
 
 		Random rand = new Random();
 
 		int pivotIdx = rand.nextInt(end - start) + start;
-		int pivotElem = pArray.get(pivotIdx).outdegree();
+		int pivotElem = pArray[pivotIdx].outdegree();
 
 		swap(pArray, pivotIdx, end);
 
 		int pointer = start;
 
 		for (int i = start; i < end; i++){
-			if (pArray.get(i).outdegree() > pivotElem){
+			if (pArray[i].outdegree() > pivotElem){
 				swap(pArray, i, pointer);
 				pointer ++;
 			}
@@ -79,15 +73,13 @@ public class Quicksort {
 	 * @param start el indice del comienzo
 	 * @param end el indice del final
 	 */
-	public void bySumDegree(ArrayList<Vertex<String, Station>> pArray, int start, int end){
-		if (start >= end){
-			return;
-		}
+	public void bySumDegree(Vertex<String, Station>[] pArray, int start, int end){
+		if (start >= end) return;
 
 		Random rand = new Random();
 
 		int pivotIdx = rand.nextInt(end - start) + start;
-		int pivotElem = pArray.get(pivotIdx).indegree() + pArray.get(pivotIdx).outdegree();
+		int pivotElem = pArray[pivotIdx].indegree() + pArray[pivotIdx].outdegree();
 
 		swap(pArray, pivotIdx, end);
 
@@ -95,7 +87,7 @@ public class Quicksort {
 		
 		int elem;
 		for (int i = start; i < end; i++){
-			elem = pArray.get(i).indegree() + pArray.get(i).outdegree();
+			elem = pArray[i].indegree() + pArray[i].outdegree();
 			if (elem < pivotElem){
 				swap(pArray, i, pointer);
 				pointer ++;
@@ -107,14 +99,14 @@ public class Quicksort {
 		bySumDegree(pArray, start, pointer-1);
 		bySumDegree(pArray, pointer+1, end);
 	}
-
+	
 	/**
 	* Funcion auxiliar
 	*/
-	public void swap(ArrayList<Vertex<String, Station>> pArray, int idx1, int idx2){
-		Vertex<String, Station> aux = pArray.get(idx1);
-		pArray.add(idx1, pArray.get(idx2));
-		pArray.add(idx2, aux);
+	public void swap(Vertex<String, Station>[] pArray, int idx1, int idx2){
+		Vertex<String, Station> aux = pArray[idx1];
+		pArray[idx1] = pArray[idx2];
+		pArray[idx2] = aux;
 	}
 }
 
