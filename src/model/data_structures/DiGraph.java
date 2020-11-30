@@ -207,6 +207,7 @@ public class DiGraph <K extends Comparable<K>, V> implements IDiGraph< K, V>
 	public ArrayList<Vertex<K, V>> verticesArr() {
 		ArrayList<Vertex<K, V>> vertices = new ArrayList<>();
 		for (Vertex<K, V> vertice : listaVertices) {
+			if(vertice!=null)
 			vertices.add(vertice);
 		}
 		return vertices;

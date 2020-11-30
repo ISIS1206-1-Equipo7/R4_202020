@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
+
+import model.data_structures.DepthFirstSearch;
 import model.data_structures.DiGraph;
 import model.data_structures.Edge;
 import model.data_structures.KosarajuSharirSCC;
@@ -54,6 +56,7 @@ public class Modelo {
 	 */
 	private DiGraph<String,Station> grafo;
 	private KosarajuSharirSCC<String, Station> Kosaraju;
+	private DepthFirstSearch<String, Station> DepthFS;
 
 	/**
 	 * Quicksort
@@ -70,6 +73,7 @@ public class Modelo {
 	public Modelo()
 	{
 		grafo = new DiGraph<String,Station>(3665);
+		sort = new Quicksort();
 	}
 	
 	
@@ -333,15 +337,15 @@ public class Modelo {
 		ArrayList<Vertex<String, Station>> estaciones = grafo.verticesArr();
 		int N = estaciones.size();
 		
-		sort.byInDegree(estaciones, 0, N);
+		sort.byInDegree(estaciones, 0, N-1);
 		System.out.println("Top 3 estaciones de llegada (indegree):");
 		this.printTop3InDegree(estaciones);
 		
-		sort.byOutDegree(estaciones, 0, N);
-		System.out.println("Top 3 estaciones de salida (indegree):");
+		sort.byOutDegree(estaciones, 0, N-1);
+		System.out.println("Top 3 estaciones de salida (outdegree):");
 		this.printTop3OutDegree(estaciones);
 		
-		sort.bySumDegree(estaciones, 0, N);
+		sort.bySumDegree(estaciones, 0, N-1);
 		System.out.println("Top 3 estaciones menos utilizadas:");
 		this.printTop3SumDegree(estaciones);
 	}
@@ -358,7 +362,7 @@ public class Modelo {
 		Vertex<String, Station> estacion;
 		for(int i = 0; i < 3; i++) {
 			estacion = pArray.get(i);
-			System.out.println((i+1) + ") " + estacion.getInfo().getName() + " - " + estacion.outdegree() + " llegadas");
+			System.out.println((i+1) + ") " + estacion.getInfo().getName() + " - " + estacion.outdegree() + " salidas");
 		}
 	}
 	
@@ -368,7 +372,7 @@ public class Modelo {
 		for(int i = 0; i < 3; i++) {
 			estacion = pArray.get(i);
 			suma = estacion.indegree() + estacion.outdegree();
-			System.out.println((i+1) + ") " + estacion.getInfo().getName() + " - " + suma + " llegadas");
+			System.out.println((i+1) + ") " + estacion.getInfo().getName() + " - " + suma + " llegadas y salidas");
 		}
 	}
 	
@@ -378,6 +382,15 @@ public class Modelo {
 	 * @param id el id de la estacion inicial
 	 */
 	public void rutaPorResistencia(String tiempo, String id) {
+		int resistencia = (Integer.parseInt(tiempo))*60;
+		int estacionInicial = (Integer.parseInt(id));
+		int contador = 0;
+		
+		DepthFS = new DepthFirstSearch<String, Station>(grafo, grafo.getVertex(id));
+		
+		for (Vertex<String, Station> vertice : grafo.adjacentVertex(id)) {
+			
+		}
 		
 	}
 	

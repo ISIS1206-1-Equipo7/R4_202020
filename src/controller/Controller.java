@@ -106,8 +106,7 @@ public class Controller {
 					break;
 				}
 				// cuerpo
-
-				
+				modelo.estacionesCriticas();				
 				view.printMessage("Consulta terminada.");
 				
 				break;
