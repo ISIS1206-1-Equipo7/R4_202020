@@ -313,6 +313,20 @@ public class Modelo {
 	}
 	
 	/**
+	 * Resuelve el req. 2
+	 */
+	public void rutaTuristicaCircular() {
+		
+	}
+	
+	/**
+	 * Resuelve el req. 3
+	 */
+	public void estacionesCriticas() {
+		
+	}
+	
+	/**
 	 * Resuelve el req. 4
 	 * @param tiempo el timpo maximo de resistencia
 	 * @param id el id de la estacion inicial
