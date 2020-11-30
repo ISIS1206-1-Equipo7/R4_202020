@@ -26,37 +26,26 @@ public class KosarajuSharirSCC <K extends Comparable<K>, V> {
     public KosarajuSharirSCC(DiGraph<K,V> G) {
 
         // compute reverse postorder of reverse graph
-        DepthFirstOrder<K,V> dfs = new DepthFirstOrder<K,V>(G.reverse());
-
-        // desmarca todos los vertices para poder hacer el DFS de nuevo 
-        /*for(Vertex<K,V> vtx : dfs.reversePost()) {
-        	vtx.unmark();
-        } */     
+        //DepthFirstOrder<K,V> dfs = new DepthFirstOrder<K,V>(G.reverse()); 
+        DFO<K, V> dfs2 = new DFO<K,V>(G.reverse());
         
         // run DFS on G, using reverse postorder to guide calculationSS
         id = new int[G.initialSize];
         marked = new boolean[G.initialSize];
         //Vertex<K,V> vertex;
-        for (Vertex v : dfs.reversePost()) {
+        
+        for (Vertex<K,V> v : dfs2.reversePost()) {
         	if(!marked[Integer.parseInt((String)v.getId())]) {
         		dfs(G, v);
         		count++;
         	}
 		}
-       /* int reversePostSize = dfs.reversePost().size();
-        for(int i=0; i< reversePostSize; i++) {
-        	vertex =  dfs.reversePost().pop();
-        	if(!marked[Integer.parseInt((String)vertex.getId())]) {
-        		dfs(G, vertex);
+        /*for (Vertex<K,V> v : dfs.reversePost()) {
+        	if(!marked[Integer.parseInt((String)v.getId())]) {
+        		dfs(G, v);
         		count++;
         	}
-        	if(vertex.getMark()==false) {
-        		dfs(G,vertex);
-        		count ++;
-        	}
-        }*/
-        // check that id[] gives strong components
-        //assert check(G);
+		}*/
     }
     
     /**
@@ -73,11 +62,11 @@ public class KosarajuSharirSCC <K extends Comparable<K>, V> {
 		}
     }
     
-    public boolean stronglyConnected(Vertex v, Vertex w) {
+    public boolean stronglyConnected(Vertex<K,V> v, Vertex<K,V> w) {
     	return id[Integer.parseInt((String) v.getId())] == id[Integer.parseInt((String) w.getId())];
     }
     
-    public int id(Vertex v) {
+    public int id(Vertex<K,V> v) {
     	return id[Integer.parseInt((String) v.getId())];
     }
     
@@ -85,6 +74,9 @@ public class KosarajuSharirSCC <K extends Comparable<K>, V> {
     	return count;
     }
     
+    public int[] ids(){
+    	return id;
+    }
     
     
 

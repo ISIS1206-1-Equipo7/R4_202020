@@ -61,14 +61,14 @@ public interface IDiGraph <K extends Comparable<K>, V>
 	 * @param id
 	 * @return LinkedList de arcos adyacentes.
 	 */
-	LinkedList<Edge<K,V>> adjacentEdges(K id);
+	Iterable<Edge<K,V>> adjacentEdges(K id);
 	
 	/**
 	 * Devuelve una lista de vertices adyacentes (salientes) al vertice con id
 	 * @param id
 	 * @return LinkedList de vertices adyacentes.
 	 */
-	LinkedList<Vertex<K,V>> adjacentVertex(K id);
+	Iterable<Vertex<K,V>> adjacentVertex(K id);
 	
 	/**
 	 * Devuelve el grado de entrada del vertice vertex (numero de arcos entrantes)
@@ -88,13 +88,13 @@ public interface IDiGraph <K extends Comparable<K>, V>
 	 * Devuelve una lista con todos los arcos del grafo.
 	 * @return LinkedList con todos los Edges (arcos) del grafo.
 	 */
-	LinkedList<Edge<K,V>> edges();
+	Iterable<Edge<K,V>> edges();
 	
 	/**
 	 * Devuelve una lista con los vértices del grafo
 	 * @return Lista con todos los vertices del grafo.
 	 */
-	LinkedList<Vertex<K,V>> vertices();
+	Iterable<Vertex<K,V>> vertices();
 	
 }
 
