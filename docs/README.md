@@ -1,4 +1,4 @@
-# T6_202020
+# R4_202020
 
 Integrantes
 - Alejandro González Díez: 201821205
