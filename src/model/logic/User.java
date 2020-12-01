@@ -1,5 +1,8 @@
 package model.logic;
 
+import java.time.LocalDate;
+import java.time.Period;
+
 public class User {
 
 	// ---------
@@ -34,6 +37,13 @@ public class User {
 		this.userType = userType;
 		this.userType = birthYear;
 		this.gender = gender;
+	}
+	
+	/**
+	 * Retorna la edad actual del usuario
+	 */
+	public int getCurrentAge() {
+		return (2020 - Integer.parseInt(getBirthYear()));
 	}
 	
 	/**

@@ -64,7 +64,7 @@ public class Modelo {
 	private Quicksort sort;
 	
 	//------------
-	// CONSTRUCTOR:
+	// CONSTRUCTOR
 	//------------
 	
 	/**
@@ -351,7 +351,7 @@ public class Modelo {
 	}
 	
 	/**
-	 * inDegree Array
+	 * Imprime las top 3 estaciones de acuerdo a su inDegree
 	 * @param pArray
 	 */
 	private void printTop3InDegree(Vertex<String, Station>[] pArray) {
@@ -363,7 +363,7 @@ public class Modelo {
 	}
 	
 	/**
-	 * outDegree Array
+	 * Imprime las top 3 estaciones de acuerdo a su outDegree
 	 * @param pArray
 	 */
 	private void printTop3OutDegree(Vertex<String, Station>[] pArray) {
@@ -375,7 +375,7 @@ public class Modelo {
 	}
 	
 	/**
-	 * sumDegree Array
+	 * Imprime las top 3 estaciones de acuerdo a su sumDegree
 	 * @param pArray
 	 */
 	private void printTop3SumDegree(Vertex<String, Station>[] pArray) {
@@ -410,8 +410,37 @@ public class Modelo {
 	 * Resuelve el req. 5
 	 * @param rangoEdad el rango de edad del turista
 	 */
-	public void recomendadorRutasPorEdad(String rangoEdad) {
+	public void recomendadorDeRutas(String rangoEdad) {
+		int[] limites = getBounds(rangoEdad);
+		int limInf = limites[0];
+		int limSup = limites [1];
 		
+		Vertex<String, Station>[] estaciones = grafo.verticesArray();
+		int N = estaciones.length;
 	}
+	
+	/**
+	 * Retorna los limites del rango de edad en un formato facil de manejar
+	 * @param range el rango de edad
+	 * @return
+	 */
+	private int[] getBounds(String range) {
+		int[] bounds = new int[2];
+		if (range.equals("60+")) {
+			bounds[0] = 60;
+			bounds[1] = 999;
+		} else {
+			String[] split = range.split("-");
+			bounds[0] = Integer.parseInt(split[0]);
+			bounds[1] = Integer.parseInt(split[1]);
+		}
+		return bounds;
+	}
+	
+	
+	
+	
+	
+	
 	
 }
